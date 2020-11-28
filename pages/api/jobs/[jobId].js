@@ -1,6 +1,6 @@
 import { jobs } from '../../../data'
 
-export default function jobHandler({ query: { jobId } }, res) {
+export default async({ query: { jobId } }, res) => {
   const filtered = jobs.filter((job) => job.id === parseInt(jobId))
 
   // Job with id exists
