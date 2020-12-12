@@ -14,17 +14,23 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-## Learn More
+## Static Site Generation
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run build
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Export Static Site bundle
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```bash
+npm run export
+```
 
-## Deploy on Vercel
+Then you can get the static website resources from the 'out' folder.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## When should I use getStaticProps?
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+* The data required to render the page is available at build time ahead of a user’s request.
+* The data comes from a headless CMS.
+* The data can be publicly cached (not user-specific).
+* The page must be pre-rendered (for SEO) and be very fast — getStaticProps generates HTML and JSON files, both of which can be cached by a CDN for performance.
