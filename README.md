@@ -14,23 +14,34 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-## Static Site Generation
+## Server Side Rendering
+
+# When should I use getServerSideProps?
+
+You should use getServerSideProps only if you need to pre-render a page whose data must be fetched at request time. Time to first byte (TTFB) will be slower than getStaticProps because the server must compute the result on every request, and the result cannot be cached by a CDN without extra configuration.
+
+## Runnning PostgreSQL database with Docker
 
 ```bash
-npm run build
+docker run --name postgres-db -p 5432:5432 -e POSTGRES_PASSWORD=postgres -d postgres
 ```
 
-## Export Static Site bundle
+## Prisma Setup
 
 ```bash
-npm run export
+npm install @prisma/cli --save-dev
+
+npx prisma init
 ```
 
-Then you can get the static website resources from the 'out' folder.
+## Prisma Migrations
 
-## When should I use getStaticProps?
+```bash
+npx prisma migrate dev --preview-feature
+```
 
-* The data required to render the page is available at build time ahead of a user’s request.
-* The data comes from a headless CMS.
-* The data can be publicly cached (not user-specific).
-* The page must be pre-rendered (for SEO) and be very fast — getStaticProps generates HTML and JSON files, both of which can be cached by a CDN for performance.
+## Generate Prisma Client
+
+```bash
+npx prisma generate
+```

@@ -1,4 +1,4 @@
-import { jobs } from '../../data';
+import { PrismaClient } from '@prisma/client';
 
 const Jobs = ({ jobList }) => {
   return (
@@ -18,11 +18,14 @@ const Jobs = ({ jobList }) => {
   )
 }
 
-export const getStaticProps = async () => {
+const prisma = new PrismaClient();
+
+export const getServerSideProps = async () => {
+  const allJobs = await prisma.job.findMany();
+  console.log(allJobs);
   return {
-    
     props: {
-      jobList: jobs
+      jobList: allJobs
     }
   }
 }
