@@ -12,4 +12,5 @@ model Job {
   title    String @unique
   company  String
   location String
+  language String
 }

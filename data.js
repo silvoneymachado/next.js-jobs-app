@@ -1,20 +1,23 @@
 export const jobs = [
     {
         id: 1,
-        title: 'Sr. Backend Engineer',
+        title: 'Sr. Python Engineer',
         company: 'Google',
-        location: 'Remote'
+        location: 'Remote',
+        language: 'Python'
     },
     {
         id: 2,
-        title: 'Sr. Frontend Engineer',
+        title: 'Sr. Golang Engineer',
         company: 'Facebook',
-        location: 'San Francisco'
+        location: 'San Francisco',
+        language: 'Golang'
     },
     {
         id: 3,
-        title: 'Sr. Fullstack Engineer',
+        title: 'Sr. Node Engineer',
         company: 'Airbnb',
-        location: 'New York'
+        location: 'New York',
+        language: 'JavaScript'
     }
 ]
