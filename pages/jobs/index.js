@@ -1,4 +1,3 @@
-import { PrismaClient } from '@prisma/client';
 import JobCard from '../../components/JobCard';
 
 const Jobs = ({ jobList }) => {
@@ -11,14 +10,17 @@ const Jobs = ({ jobList }) => {
   )
 }
 
-const prisma = new PrismaClient();
+const client = require('contentful').createClient({
+  space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
+  accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN,
+})
 
 export const getServerSideProps = async () => {
-  const allJobs = await prisma.job.findMany();
+  const allJobs = await client.getEntries();
   console.log(allJobs);
   return {
     props: {
-      jobList: allJobs
+      jobList: allJobs.items
     }
   }
 }
