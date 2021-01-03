@@ -4,7 +4,7 @@ const Jobs = ({ jobList }) => {
   return (    
     <div className="jobs">
       {jobList.map((job) => (
-        <JobCard job={job} />
+        <JobCard job={job.fields} key={job.sys.id} />
       ))}
     </div>
   )
@@ -17,7 +17,6 @@ const client = require('contentful').createClient({
 
 export const getServerSideProps = async () => {
   const allJobs = await client.getEntries();
-  console.log(allJobs);
   return {
     props: {
       jobList: allJobs.items
