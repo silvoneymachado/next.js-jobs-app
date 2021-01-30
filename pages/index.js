@@ -1,8 +1,17 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
-import Link from 'next/link'
+import Head from 'next/head';
+import styles from '../styles/Home.module.css';
+import React from 'react';
+import {
+  signIn, 
+  signOut,
+  useSession
+} from 'next-auth/client';
+import Link from 'next/link';
 
 const  home = () => {
+  
+  const [ session, loading ] = useSession();
+
   return (
     <div className={styles.container}>
       <Head>
@@ -11,29 +20,17 @@ const  home = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Pragmatic Reviews Sample Jobs App
-        </h1>
+        
+        {!session && <>
+          <h1>You are not signed in</h1> <br/>
+          <button onClick={signIn}>Sign in</button>
+        </>}
 
-        <ul>
-      <li>
-        <Link href="/jobs/111">
-          <a>Go to pages/post/[jobId].js</a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/jobs/111?location=Remote">
-          <a>Also goes to pages/jobs/[jobId].js</a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/jobs/111/some-question-id">
-          <a>Go to pages/jobs/[jobId]/[questionId].js</a>
-        </Link>
-      </li>
-    </ul>        
-
-
+        {session && <>
+          <h1>Signed in as {session.user.email} </h1> <br/>
+          <h2>Go to <Link href="/jobs"><a>Jobs</a></Link>  </h2>
+          <button onClick={signOut}>Sign out</button>
+        </>}
 
       </main>
 
