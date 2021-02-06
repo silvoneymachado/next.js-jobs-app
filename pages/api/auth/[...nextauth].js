@@ -14,7 +14,11 @@ const options = {
           }
         },
         from: process.env.EMAIL_FROM
-    }),    
+    }),
+    Providers.Spotify({
+      clientId: process.env.SPOTIFY_CLIENT_ID,
+      clientSecret: process.env.SPOTIFY_CLIENT_SECRET
+    }),
   ],
   // Optional SQL or MongoDB database to persist users
   database: process.env.DATABASE_URL
