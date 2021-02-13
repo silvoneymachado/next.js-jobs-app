@@ -3,9 +3,9 @@ import Providers from 'next-auth/providers'
 
 const options = {
   providers: [
-    Providers.GitHub({
-      clientId: process.env.GITHUB_CLIENT_ID,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET
+    Providers.GitLab({
+      clientId: process.env.GITLAB_CLIENT_ID,
+      clientSecret: process.env.GITLAB_CLIENT_SECRET
     })
   ],
   // Optional SQL or MongoDB database to persist users
