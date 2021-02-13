@@ -3,9 +3,9 @@ import Providers from 'next-auth/providers'
 
 const options = {
   providers: [
-    Providers.Slack({
-      clientId: process.env.SLACK_CLIENT_ID,
-      clientSecret: process.env.SLACK_CLIENT_SECRET
+    Providers.GitHub({
+      clientId: process.env.GITHUB_CLIENT_ID,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET
     })
   ],
   // Optional SQL or MongoDB database to persist users

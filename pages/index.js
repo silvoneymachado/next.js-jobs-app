@@ -27,7 +27,7 @@ const  home = () => {
         </>}
 
         {session && <>
-          <h1>Signed in as {session.user.email} </h1> <br/>
+          <h1>Signed in as {session.user.name} </h1> <br/>
           <h2>Go to <Link href="/jobs"><a>Jobs</a></Link>  </h2>
           <button onClick={signOut}>Sign out</button>
         </>}
