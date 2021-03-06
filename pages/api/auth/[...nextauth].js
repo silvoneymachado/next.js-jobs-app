@@ -1,5 +1,6 @@
 import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
+import axios from 'axios';
 
 const options = {
   providers: [
@@ -12,18 +13,19 @@ const options = {
         password: {  label: "Password", type: "password" }
       },
       async authorize(credentials) {
-        // Add logic here to look up the user from the credentials supplied
-        const user = { id: 1, name: 'J Smith', email: 'jsmith@example.com' }
-  
-        if (user) {
-          // Any object returned will be saved in `user` property of the JWT
-          return user
-        } else {
-          // If you return null or false then the credentials will be rejected
-          return null
-          // You can also Reject this callback with an Error or with a URL:
-          // throw new Error('error message') // Redirect to error page
-          // throw '/path/to/redirect'        // Redirect to a URL
+        // Authentication Logic: local function, external API call, etc
+        //const user = { id: 1, name: 'J Smith', email: 'jsmith@example.com' }
+        try {
+          const user = await axios.get("https://6043750da20ace001728e1a7.mockapi.io/api/v1/login/1");
+    
+          if (user) {
+            console.log(user.data);
+            return user.data;
+          } else {
+            return null;
+          }
+        } catch(e) {
+          throw new Error("There was an error on user authentication");  
         }
       }
     })    
