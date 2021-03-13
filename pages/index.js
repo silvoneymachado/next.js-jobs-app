@@ -6,6 +6,7 @@ import {
   signOut,
   useSession
 } from 'next-auth/client';
+import Link from 'next/link';
 
 const  home = () => {
   
@@ -19,7 +20,8 @@ const  home = () => {
       </Head>
 
       <main className={styles.main}>
-        
+        <h1>{process.env.title}</h1>
+        <Link href="/ab"><a>Go to About page</a></Link>   
         {!session && <>
           <h1>You are not signed in</h1> <br/>
           <button onClick={signIn}>Sign in</button>
@@ -29,7 +31,7 @@ const  home = () => {
           <h1>Signed in as {session.user.name} </h1> <br/>
           <button onClick={signOut}>Sign out</button>
         </>}
-
+       
       </main>
 
       <footer className={styles.footer}>
