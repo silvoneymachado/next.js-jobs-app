@@ -45,3 +45,9 @@ npx prisma migrate dev --preview-feature
 ```bash
 npx prisma generate
 ```
+
+## Docker build and run
+```bash
+docker build -t nextjs-app .
+docker run -p 3000:3000 nextjs-app
+```
